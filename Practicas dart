@@ -1,0 +1,264 @@
+void main() {
+  
+  // Este es un comentario
+    /*
+   *  Esto es un comentario multilinea
+   *  Hola de nuevo...
+   */
+   print('Hola Mundo');
+
+// --------------------------------------------------
+  // SECCIÓN: Strings (Cadenas de texto)
+  // --------------------------------------------------
+
+  // 'final' define una variable que NO podrá cambiar su valor después de la primera asignación.
+  final String nombre = 'Tony';
+  
+  // En Dart, puedes omitir el tipo (String) y usar inferencia; 'apellido' sigue siendo final.
+  final apellido = 'Stark';
+  
+  // La siguiente línea daría error porque 'nombre' es final (no se puede reasignar).
+  // nombre = 'Peter';
+  
+  // Usamos $ para hacer "Interpolación de Strings", uniendo las variables en un solo texto.
+  print('$nombre $apellido'); // Resultado: Tony Stark
+
+  
+  // --------------------------------------------------
+  // SECCIÓN: Números
+  // --------------------------------------------------
+
+  // 'int' se usa para números enteros (sin decimales).
+  int empleados = 10;
+  
+  // 'double' se usa para números de precisión de punto flotante (con decimales).
+  double salario = 1856.25;
+  
+  print(empleados);
+  print(salario);
+}
+Un par de puntos clave para tu aprendizaje:
+Inferencia de tipos: Notarás que en final apellido = 'Stark'; no pusiste String. Dart es lo suficientemente inteligente para saber que es un texto, 
+pero al ponerle final, aseguras que nadie la cambie por accidente.
+
+Tipos de Números: Si alguna vez necesitas que una variable acepte tanto enteros como decimales, podrías usar el tipo num.
+
+CamelCase: Es una buena práctica en Dart nombrar tus variables empezando con minúscula (ej. nombreEmpleado), tal como lo hiciste con empleados y salario.
+
+
+  Este fragmento de código toca uno de los temas más importantes en Dart moderno: el Null Safety (seguridad contra nulos).
+
+Aquí tienes el código comentado paso a paso para que entiendas qué hace ese signo de interrogación y cómo funciona la lógica:
+
+
+/////////////// Null Safety //////////////////////////////////
+
+Dart
+void main() {
+  // El signo '?' después de 'bool' indica que la variable es "nullable".
+  // Esto significa que 'isActive' puede contener: true, false o null.
+  // Sin el '?', Dart no te permitiría asignarle null.
+  bool? isActive = null;
+
+  // Evaluamos la condición
+  if (isActive == null) {
+    // Si la variable no tiene ningún valor asignado (es nula), entra aquí
+    print('isActive es null');
+  } else {
+    // Si tiene un valor (ya sea true o false), entra aquí
+    print('No es null');
+  }
+}
+Conceptos clave que estás aplicando:
+El Operador ?: Es como darle un "permiso especial" a la variable. Por defecto, en Dart las variables no pueden ser nulas. Al escribir bool?, estás diciendo: "Oye, esta variable puede estar vacía al principio".
+
+Null Safety: Esta característica evita que tu aplicación se cierre inesperadamente (el famoso error de "crash") al intentar usar una variable que no tiene valor.
+
+Booleanos Tri-estatales: Normalmente un bool es binario (sí o no), pero con el ?, técnicamente tienes 3 estados posibles: true, false y null.
+
+Un truco extra de Dart:
+Si quisieras asignar un valor por defecto en caso de que sea nulo, podrías usar el operador ?? (operador de coalescencia nula):
+
+Dart
+bool realStatus = isActive ?? false; 
+// Esto dice: "Si isActive es null, usa false. Si no es null, usa su valor".
+
+
+////////////// LISTA /////////////////////////////
+
+void main() {
+  // --------------------------------------------------
+  // 1. LISTA MANUAL (Literal)
+  // --------------------------------------------------
+  
+  // Definimos una lista que solo acepta enteros <int>
+  List<int> numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  // El método .add() agrega un elemento al final de la lista
+  numeros.add(11); 
+
+  print(numeros); // Resultado: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+  
+  // --------------------------------------------------
+  // 2. LISTA GENERADA (Dinámica)
+  // --------------------------------------------------
+
+  // List.generate es un constructor útil para crear listas grandes.
+  // El primer argumento (100) es el tamaño.
+  // El segundo es una función que recibe el 'index' (posición 0, 1, 2...) 
+  // y retorna el valor que quieres poner en esa posición.
+  final masNumeros = List.generate(100, (int index) => index);
+
+  // Esto imprimirá una lista del 0 al 99
+  print(masNumeros);
+}
+Detalles que debes notar:
+Índices en Programación: Recuerda que en List.generate, el conteo siempre empieza en 0. Por eso, aunque pides 100 elementos, el último número será el 99.
+
+Flexibilidad: Si en List.generate cambiaras la lógica a (index) => index * 2, ¡tendrías una lista de números pares en un segundo!
+
+Tipado fuerte: Como definiste List<int>, si intentas hacer numeros.add('Hola'), Dart te dará un error inmediatamente porque prometiste que solo habría números.
+
+Un pequeño reto para ti:
+¿Cómo modificarías el List.generate para que la lista empiece en 1 y termine en 100, en lugar de 0 a 99?
+
+////// MAPS //////////////////////////////////
+
+void main() {
+  // Un 'Map' es como una ficha de información. 
+  // <String, dynamic> significa:
+  // - La "etiqueta" siempre será un texto (String).
+  // - El "contenido" puede ser cualquier cosa (dynamic): números, texto, booleanos, etc.
+  Map<String, dynamic> persona = {
+    'nombre' : 'Fernando', // Etiqueta 'nombre' guarda el texto 'Fernando'
+    'edad'   : 35,         // Etiqueta 'edad' guarda el número 35
+    'soltero': false,      // Etiqueta 'soltero' guarda un valor de falso/verdadero
+  };
+  
+  // '.addAll' sirve para agregar más información a nuestra ficha.
+  // Aquí estamos creando una nueva etiqueta llamada 'segundoNombre'.
+  persona.addAll({ 'segundoNombre': 'Juan' });
+  
+  // Al imprimirlo, veremos toda nuestra "ficha" completa en la pantalla.
+  print( persona );
+}
+Explicación para alguien que no sabe nada de programación
+Imagina que tienes una caja de archivos llamada persona.
+
+Las Etiquetas (Llaves): En programación las llamamos Keys. Son los nombres que escribes en la pestañita de cada folder: "Nombre", "Edad", "Dirección".
+
+El Contenido (Valores): En programación los llamamos Values. Es lo que guardas dentro de cada folder.
+
+El tipo Map<String, dynamic>:
+
+String: Dice que las etiquetas solo pueden ser palabras.
+
+dynamic: Dice que adentro de los folders puedes meter lo que quieras (un papel con texto, un número, o un cheque).
+
+¿Por qué comentaste la primera parte del código?
+En la parte que tienes con //, el código permitía cosas raras como usar números o verdades como etiquetas (1: 100 o true: false).
+Aunque Dart lo permite, es como tener una agenda desordenada. Al usar Map<String, dynamic>, estás poniendo orden, obligando a que
+todas las etiquetas sean palabras legibles.
+
+Un pequeño truco
+Si quieres sacar solo un dato específico, por ejemplo la edad, se hace así:
+print( persona['edad'] );
+
+
+////////////////// FUNCIONES //////////////////////
+
+Dart
+void main() {
+  // Creamos una tarjeta con el nombre 'Fernando' que no va a cambiar (final).
+  final nombre = 'Fernando';
+  
+  // Aquí llamamos a la función número 2.
+  // Como usa llaves { }, tenemos que decir el nombre de la "etiqueta" (nombre: y mensaje:).
+  saludar2( nombre: nombre, mensaje: 'Greetings' );
+}
+
+// --- FUNCIÓN 1: Posicional ---
+// Los datos deben ir en el orden exacto: primero el nombre, luego el mensaje.
+// Los corchetes [ ] significan que el mensaje es OPCIONAL. Si no mandas nada, dirá 'Hi'.
+void saludar( String nombre, [ String mensaje = 'Hi' ]) {
+  print('$mensaje $nombre');
+}
+
+
+// --- FUNCIÓN 2: Por Nombre (Argumentos Nombrados) ---
+// Al usar llaves { }, el orden ya no importa, pero debemos usar las etiquetas.
+// 'required' significa que es OBLIGATORIO pasar ese dato, no se nos puede olvidar.
+void saludar2({ 
+  required String nombre, 
+  required String mensaje,
+}) {
+  print('$mensaje $nombre');
+}
+Explicación simple: ¿Cuál es la diferencia?
+Imagina que vas a una cafetería a pedir un café:
+
+1. Argumentos Posicionales (saludar)
+Es como un autoservicio donde el cajero ya sabe el orden: "Dígame primero el tamaño y luego el tipo de leche".
+
+Si dices: "Grande, Almendra", te entienden.
+
+Si te equivocas y dices: "Almendra, Grande", el cajero se confunde porque él espera el tamaño primero.
+
+2. Argumentos Nombrados (saludar2)
+Es como un formulario donde tú llenas los espacios. No importa si escribes primero tu nombre o tu apellido, porque cada espacio tiene su propia etiqueta.
+
+nombre: 'Fernando' (Aquí dice qué dato es).
+
+mensaje: 'Greetings' (Aquí dice qué dato es).
+
+Ventaja: Es mucho más difícil equivocarse cuando el código crece, porque siempre sabes qué estás enviando.
+
+¿Qué significa required?
+Es como un asterisco rojo en un formulario de internet. Si intentas enviar el formulario sin llenar ese campo, no te deja avanzar. Dart te avisará con 
+un error antes de que el programa falle.
+
+función "híbrida". Imagina que estamos diseñando una función para una tienda de hamburguesas.
+
+La regla será:
+
+El tipo de hamburguesa es obligatorio y va por posición (lo primero que dices).
+
+Los ingredientes extra son opcionales y van con nombre (para no confundirlos).
+
+Aquí tienes el código:
+
+Dart
+void main() {
+  // 1. Pedido básico: Solo decimos el nombre (el mensaje opcional será 'Sencilla')
+  prepararOrden('Clásica'); 
+  
+  // 2. Pedido especial: Decimos el nombre Y agregamos extras usando etiquetas
+  prepararOrden('Mega-Doble', extra: 'Tocineta', conCombo: true);
+}
+
+// 'tipo' es obligatorio y posicional (va primero)
+// Lo que está en { } es opcional y lleva nombre (etiqueta)
+void prepararOrden( String tipo, { String extra = 'Ninguno', bool conCombo = false }) {
+  
+  print('--- NUEVA ORDEN ---');
+  print('Hamburguesa: $tipo');
+  print('Ingrediente extra: $extra');
+  
+  if ( conCombo ) {
+    print('Estado: ¡Viene con papas y refresco!');
+  } else {
+    print('Estado: Solo la hamburguesa.');
+  }
+}
+¿Qué aprendemos aquí?
+Valores por defecto (extra = 'Ninguno'): Si el cliente no pide nada extra, el sistema automáticamente escribe "Ninguno". Así el programa no se rompe por falta de información.
+
+El poder de bool: Usamos el conCombo (verdadero o falso) para decidir si imprimimos el mensaje de las papas y el refresco.
+
+Orden y Claridad: Al leer prepararOrden('Mega-Doble', extra: 'Tocineta'), cualquier persona que lea tu código entiende exactamente qué está pasando, ¡aunque no sea programador!
+
+Tu próximo paso:
+Ya dominas las variables, listas, mapas y funciones. El siguiente nivel en el mundo de Dart y Flutter son las Clases (que son como "moldes" para crear objetos).
+
+} // <----fin main
