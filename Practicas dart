@@ -261,4 +261,72 @@ Orden y Claridad: Al leer prepararOrden('Mega-Doble', extra: 'Tocineta'), cualqu
 Tu próximo paso:
 Ya dominas las variables, listas, mapas y funciones. El siguiente nivel en el mundo de Dart y Flutter son las Clases (que son como "moldes" para crear objetos).
 
+##########3 CLASES #######################
+
+Ya entramos al corazón de la programación orientada a objetos. Vamos a explicar qué es una Clase usando la analogía de un molde de galletas o un plano de construcción.
+
+Aquí tienes el código comentado paso a paso:
+
+Dart
+void main() {
+  // Aquí creamos al héroe real usando el "molde" (la clase Heroe).
+  // 'wolverine' es una INSTANCIA de la clase Heroe.
+  final wolverine = new Heroe(
+    nombre: 'Logan', 
+    poder: 'Regeneración'
+  );
+  
+  // Imprimimos el objeto. Gracias al método 'toString' que escribiste abajo,
+  // no sale un texto raro, sino la información que elegiste.
+  print( wolverine ); 
+}
+
+// 1. LA CLASE: Es el plano o molde. 
+// Define qué características tiene un héroe en nuestro programa.
+class Heroe {
+  
+  String nombre; // Característica 1: Su nombre
+  String poder;  // Característica 2: Su superpoder
+  
+  // 2. EL CONSTRUCTOR: Es la función que se ejecuta al crear el héroe.
+  // Al usar { } y 'required', obligamos a que al crear un héroe
+  // siempre nos digan su nombre y su poder usando etiquetas.
+  // 'this.nombre' significa: "Lo que recibas, guárdalo en la variable de ARRIBA".
+  Heroe({ 
+    required this.nombre, 
+    required this.poder 
+  });
+  
+  // 3. SOBRESCRIBIR toString:
+  // Por defecto, si imprimes un objeto, sale algo como "Instance of 'Heroe'".
+  // Al escribir esta función, le dices a Dart: "Cuando alguien me imprima,
+  // quiero que muestres este texto bonito".
+  @override // Esta palabra le dice a Dart que estamos cambiando el comportamiento normal.
+  String toString() {
+    return 'Heroe: nombre: ${this.nombre}, poder: ${ this.poder }';
+  }
+}
+Explicación para alguien que no sabe nada
+Imagina que quieres fabricar muchos superhéroes:
+
+La Clase (class Heroe): Es el plano de una fábrica. El plano dice que todos los héroes deben tener un nombre y un poder, pero el plano no es un héroe de verdad, es solo el dibujo.
+
+El Constructor (Heroe({ ... })): Es la máquina que recibe los materiales (los datos) y construye el juguete físico.
+
+La Instancia (wolverine): Es el muñeco de acción ya terminado que tienes en tu mano. Puedes tener muchos muñecos (Wolverine, Superman, Batman) hechos con el mismo plano, pero cada uno con su nombre y poder diferente.
+
+¿Por qué usamos this?
+La palabra this es como si el objeto señalara a su propio pecho. Cuando dices this.nombre, el programa entiende: "El nombre que me pertenece a MÍ, a este objeto específico".
+
+Un reto divertido:
+¿Qué pasaría si quisieras que tus héroes también tuvieran un nivel de energía del 1 al 100?
+
+Tendrías que agregar int energia; arriba.
+
+Agregarlo al constructor con required this.energia.
+
+Y actualizar el toString para que también lo muestre.
+
+¿Te gustaría que lo intentemos juntos para ver cómo cambia el "molde"?
+
 } // <----fin main
