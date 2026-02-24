@@ -99,6 +99,85 @@ void main() {
 
   print(numeros); // Resultado: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
+List<int> numeros = [10, 20, 30, 40, 50];
+
+  // 1. EL CICLO 'FOR' CLÁSICO
+  // Es como usar un contador manual. "Empieza en 0, mientras sea menor al total, suma 1".
+  print('--- For Clásico ---');
+  for (int i = 0; i < numeros.length; i++) {
+    print('Posición $i tiene el valor: ${numeros[i]}');
+  }
+
+  // 2. EL CICLO 'FOR-IN'
+  // Es la forma más humana de leerlo: "Por cada número dentro de la lista..."
+  print('\n--- For-In ---');
+  for (int n in numeros) {
+    print('Número: $n');
+  }
+
+  // 3. EL MÉTODO '.forEach'
+  // Es como darle una orden directa a la lista: "Para cada uno de tus elementos, haz esto".
+  print('\n--- ForEach ---');
+  numeros.forEach((n) => print('Dato: $n'));
+
+3. El Método .forEach (Para realizar una acción)
+Dart
+print('\n--- ForEach ---');
+numeros.forEach((n) => print('Dato: $n'));
+print('\n--- ForEach ---');: Simplemente imprime un título en la consola. El \n sirve para dejar un espacio en blanco arriba y que no se vea todo amontonado.
+
+numeros.forEach(...): Le dice a la lista numeros: "Voy a pasar por cada uno de tus elementos".
+
+(n): Es el nombre que le damos al elemento que estamos visitando en ese momento. Imagina que la lista es una fila de personas; n es la persona que está pasando al frente ahora mismo.
+
+=> print('Dato: $n'): La flecha => significa "haz esto". Por cada número (n), la computadora ejecutará un print para mostrarlo en pantalla.
+
+En resumen: El .forEach es como un cartero que visita cada casa solo para entregar un mensaje, pero no cambia las casas.
+
+  // 4. MAP (Transformación)
+  // No solo recorre, sino que crea una NUEVA lista cambiando los datos.
+  // Ejemplo: Queremos el doble de cada número.
+  print('\n--- Map (El doble) ---');
+  final dobles = numeros.map((n) => n * 2).toList();
+  print(dobles);
+}
+
+4. El Método .map (Para transformar y crear algo nuevo)
+Dart
+print('\n--- Map (El doble) ---');
+final dobles = numeros.map((n) => n * 2).toList();
+print(dobles);
+final dobles =: Aquí estamos creando una nueva variable para guardar el resultado. A diferencia del anterior, este método sí produce algo nuevo.
+
+numeros.map(...): El "Map" es como una máquina transformadora. Toma la lista original y a cada elemento le hace un cambio.
+
+(n) => n * 2: Por cada número n, la máquina lo multiplica por 2. Si entra un 10, sale un 20. Si entra un 30, sale un 60.
+
+.toList(): Esto es muy importante. Cuando usas .map, Dart te entrega un "Iterable" (algo que se puede recorrer), pero para que vuelva a ser una Lista oficial y puedas ver los corchetes [ ], usamos .toList().
+
+print(dobles);: Imprime la nueva lista ya transformada.
+
+La diferencia clave para un niño:
+.forEach: Es como ir por cada salón de la escuela gritando el nombre de los niños. Solo haces ruido (una acción).
+
+.map: Es como si cada niño entrara a una cabina mágica y saliera con un disfraz. Al final, tienes una nueva fila de niños disfrazados.
+
+¿Cuál elegir? (Explicación para todos)
+El For Clásico: Úsalo si necesitas saber exactamente el número de la posición (el índice). Por ejemplo, si quieres decir "El ganador es el que está en el lugar número 3".
+
+El For-In: Es el favorito de todos porque es limpio y fácil de leer. Si solo quieres mostrar los datos sin importar la posición, usa este.
+
+ForEach: Es genial para acciones rápidas en una sola línea de código.
+
+Map: Este es "mágico". No solo recorre la lista, sino que fabrica una nueva. Es como si a cada número le dieras una poción para que se convierta en algo más.
+
+Un truco extra: Filtrar (Where)
+Si tienes una lista de 100 números y solo quieres los que son mayores a 30, Dart tiene un método llamado .where:
+
+Dart
+final grandes = numeros.where((n) => n > 30);
+print('Números mayores a 30: ${grandes.toList()}');
+
   
   // --------------------------------------------------
   // 2. LISTA GENERADA (Dinámica)
