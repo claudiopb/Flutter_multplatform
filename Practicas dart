@@ -266,33 +266,101 @@ void saludar( String nombre, [ String mensaje = 'Hi' ]) {
 
 
 // --- FUNCIÓN 2: Por Nombre (Argumentos Nombrados) ---
-// Al usar llaves { }, el orden ya no importa, pero debemos usar las etiquetas.
-// 'required' significa que es OBLIGATORIO pasar ese dato, no se nos puede olvidar.
+1. Explicación del Código (Paso a Paso)
+Imagina que una función es como una máquina a la que le das ingredientes (datos) y ella realiza una tarea (saludar).
+
+El Corazón del Código: main
+Dart
+void main() {
+  final nombre = 'Fernando';
+  
+  // Aquí llamamos a saludar2. Como usa {}, debemos poner el nombre del dato.
+  saludar2( nombre: nombre, mensaje: 'Greetings' );
+}
+void main(): Es el punto de partida. Todo programa en Dart comienza aquí.
+
+saludar2(...): Es como presionar el botón de encendido de nuestra máquina de saludos.
+
+Función 1: Argumentos Opcionales (Posicionales)
+Dart
+void saludar( String nombre, [ String mensaje = 'Hi' ]) {
+  print('$mensaje $nombre');
+}
+String nombre: Es obligatorio y debe ir en la primera posición.
+
+[ String mensaje = 'Hi' ]: Los corchetes significan "opcional". Si no le dices qué decir, la máquina usará por defecto el saludo 'Hi'.
+
+Función 2: Argumentos Nombrados (Los más usados en Flutter)
+Dart
 void saludar2({ 
   required String nombre, 
   required String mensaje,
 }) {
   print('$mensaje $nombre');
 }
-Explicación simple: ¿Cuál es la diferencia?
-Imagina que vas a una cafetería a pedir un café:
+{ }: Estas llaves transforman los ingredientes en "etiquetados". Ya no importa el orden, pero sí el nombre.
 
-1. Argumentos Posicionales (saludar)
-Es como un autoservicio donde el cajero ya sabe el orden: "Dígame primero el tamaño y luego el tipo de leche".
+required: Es un candado de seguridad. Le dice a Dart: "No dejes que la máquina arranque si falta este dato".
 
-Si dices: "Grande, Almendra", te entienden.
+2. Ejemplos de Niveles
+Nivel Sencillo: El Calculador de Helados
+Una función que simplemente suma dos números para saber cuántas bolas de helado tenemos.
 
-Si te equivocas y dices: "Almendra, Grande", el cajero se confunde porque él espera el tamaño primero.
+Dart
+void sumarHelados(int chocolate, int vainilla) {
+  print('Tienes un total de ${chocolate + vainilla} bolas de helado.');
+}
 
-2. Argumentos Nombrados (saludar2)
-Es como un formulario donde tú llenas los espacios. No importa si escribes primero tu nombre o tu apellido, porque cada espacio tiene su propia etiqueta.
+// Se llama así:
+// sumarHelados(2, 3);
+Nivel Alto: El Validador de Usuarios
+Una función que recibe datos nombrados y decide si permite el acceso a una aplicación.
 
-nombre: 'Fernando' (Aquí dice qué dato es).
+Dart
+String verificarAcceso({ required String usuario, int edad = 0 }) {
+  if (edad >= 18) {
+    return 'Bienvenido $usuario, acceso concedido.';
+  } else {
+    return 'Lo siento $usuario, eres muy joven.';
+  }
+}
 
-mensaje: 'Greetings' (Aquí dice qué dato es).
+// Se llama así:
+// print( verificarAcceso(usuario: 'Admin123', edad: 20) );
+3. Caso Práctico: "Sistema de Pedidos de Pizza" 🍕
+Contexto: Los alumnos deben crear una pequeña máquina que calcule el precio de una pizza.
 
-Ventaja: Es mucho más difícil equivocarse cuando el código crece, porque siempre sabes qué estás enviando.
+Requisitos del reto:
 
+Crear una función llamada ordenarPizza.
+
+Debe recibir por posición el tamaño (Ej: 'Grande').
+
+Debe recibir de forma nombrada y opcional los ingredientes extra (Ej: 'Queso').
+
+Debe tener un argumento nombrado obligatorio para el nombre del cliente.
+
+Información para la solución:
+Para unir textos usa el símbolo $.
+
+Recuerda usar required para el nombre del cliente.
+
+Usa { } para los datos con etiqueta.
+
+Solución propuesta (Para el profesor):
+Dart
+void main() {
+  // Ejemplo de uso para los alumnos:
+  ordenarPizza('Mediana', cliente: 'Juan', extra: 'Peperoni');
+}
+
+void ordenarPizza(String tamano, { required String cliente, String extra = 'Ninguno' }) {
+  print('--- TICKET DE PIZZA ---');
+  print('Cliente: $cliente');
+  print('Tamaño: $tamano');
+  print('Ingrediente extra: $extra');
+  print('-----------------------');
+}
 ¿Qué significa required?
 Es como un asterisco rojo en un formulario de internet. Si intentas enviar el formulario sin llenar ese campo, no te deja avanzar. Dart te avisará con 
 un error antes de que el programa falle.
