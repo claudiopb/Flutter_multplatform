@@ -476,4 +476,21 @@ Y actualizar el toString para que también lo muestre.
 
 ¿Te gustaría que lo intentemos juntos para ver cómo cambia el "molde"?
 
+########## ejemplo 1 en clase   #######3333
+
+  final wolverine = new Heroe('Logan');
+  final superman = new Heroe('Clark');
+  print(wolverine);
+  print(wolverine.nombre);
+  print(superman.nombre);
+}
+
+class Heroe {
+ String? nombre;
+ String? poder;
+  
+ Heroe( String pNombre ) {
+this.nombre = pNombre; }
+}
+
 } // <----fin main
