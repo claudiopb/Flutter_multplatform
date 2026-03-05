@@ -493,4 +493,30 @@ class Heroe {
 this.nombre = pNombre; }
 }
 
+########## ejemplo 2 en clase   #######3333
+
+
+void main() {
+
+  final wolverine = new Heroe(poder:'regeneracion',nombre: 'Logan');
+  final superman = new Heroe(nombre: 'Clark',poder:'volar');
+  print(wolverine);
+  
+  print(wolverine.nombre);
+  wolverine.nombre ='Lobesno';
+  print(wolverine.nombre);
+  print(superman.nombre);
+}
+
+class Heroe {
+ String? nombre;
+ String? poder;
+  
+Heroe({ 
+required this.nombre, 
+required this.poder 
+});
+}
+  
+
 } // <----fin main
