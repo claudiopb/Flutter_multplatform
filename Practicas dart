@@ -517,6 +517,37 @@ required this.nombre,
 required this.poder 
 });
 }
+
+########### clase con constructores nomrados y un json como parametro
+
+import 'dart:convert';
+void main(){
+ 
+ final wolverine = new Heroe(nombre: 'dead pool',poder: 'regeneracion');
+ final jsonSimple = '{"nombre":"Acuaman","poder":"nadar" }';
+ Map jsonParseado = json.decode(jsonSimple);
+ final acuaman = Heroe.deJson(jsonParseado);
+  print(jsonParseado);
+  print(wolverine);
+  print(acuaman);
   
+}
+
+class Heroe{
+  
+  String? nombre;
+  String? poder;
+
+ Heroe({this.nombre,this.poder});
+  
+Heroe.deJson(Map jsonParseado){
+  nombre = jsonParseado['nombre'];
+  poder = jsonParseado['poder'];
+}
+
+  String toString() => 'nombre: $nombre | poder: $poder';
+ 
+  
+}
 
 } // <----fin main
